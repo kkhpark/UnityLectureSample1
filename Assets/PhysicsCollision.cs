@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhysicsCollision : MonoBehaviour
@@ -37,5 +38,19 @@ public class PhysicsCollision : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Trigger Exit");
+    }
+
+
+    private void Update()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward*3000, out hit))
+        {
+            if(hit.transform.gameObject.name == "Cube")
+            {
+                Debug.Log("HIT!!");
+            }
+        }
+        Debug.DrawRay(transform.position, transform.forward*3000, Color.red);
     }
 }
